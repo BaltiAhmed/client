@@ -5,11 +5,13 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import IconAntDesign from "react-native-vector-icons/AntDesign";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import Landing from "../screens/landing";
+import SiteTourestique from "../screens/site-tourestique";
 
 
 const LandingNav = createStackNavigator(
   {
     Landing: Landing,
+    SiteTourestique:SiteTourestique
   },
   {
     defaultNavigationOptions: {

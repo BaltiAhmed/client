@@ -174,7 +174,7 @@ const SignupA = (props) => {
 };
 
 SignupA.navigationOptions = {
-  headerTitle: "Inscription Agriculteur",
+  headerTitle: "Inscription",
 };
 
 const styles = StyleSheet.create({

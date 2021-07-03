@@ -114,7 +114,7 @@ const LoginA = (props) => {
 };
 
 LoginA.navigationOptions = {
-  headerTitle: "Connextion Agriculteur",
+  headerTitle: "Connextion",
 };
 
 const styles = StyleSheet.create({
