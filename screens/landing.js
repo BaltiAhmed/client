@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 
+
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
@@ -84,6 +85,7 @@ const Landing = (props) => {
             </TouchableOpacity>
           </View>
         ))}
+      
     </ScrollView>
   );
 };
