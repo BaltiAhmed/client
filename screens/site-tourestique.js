@@ -10,6 +10,8 @@ import {
 import { Card, CardItem, Body } from "native-base";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
+import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Fontisto from "react-native-vector-icons/Fontisto";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -81,7 +83,36 @@ const SiteTourestique = (props) => {
                 </Body>
               </CardItem>
               <CardItem footer>
-                <View style={styles.details}></View>
+                <View style={styles.details}>
+                  <IconMaterialIcons
+                    name="event"
+                    size={50}
+                    color="#1976d2"
+                    style={{ marginLeft: 50 }}
+                    onPress={() => {
+                      props.navigation.navigate({
+                        routeName: "Evenement",
+                        params: {
+                          id: list._id,
+                        }
+                      });
+                    }}
+                  />
+                  <Fontisto
+                    name="paper-plane"
+                    size={50}
+                    color="#1976d2"
+                    style={{ marginLeft: 100 }}
+                    onPress={() => {
+                      props.navigation.navigate({
+                        routeName: "BonPlan",
+                        params: {
+                          id: list._id,
+                        }
+                      });
+                    }}
+                  />
+                </View>
               </CardItem>
             </Card>
             <MapView
@@ -94,8 +125,10 @@ const SiteTourestique = (props) => {
               }}
             >
               <Marker
-                coordinate={{ latitude: 36.811571199999996, longitude: 10.181017599999999 }}
-               
+                coordinate={{
+                  latitude: 36.811571199999996,
+                  longitude: 10.181017599999999,
+                }}
               />
             </MapView>
           </View>
@@ -116,7 +149,7 @@ const styles = StyleSheet.create({
   },
   details: {
     flexDirection: "row",
-    padding: 15,
+    padding: 10,
     justifyContent: "space-around",
   },
   title: {
