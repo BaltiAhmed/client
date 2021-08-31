@@ -7,8 +7,9 @@ import {
   ImageBackground,
   RefreshControl,
   ScrollView,
+  Image,
 } from "react-native";
-
+import { Card, CardItem, Body, Button } from "native-base";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -21,7 +22,9 @@ const Evenement = (props) => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
     const sendRequest = async () => {
-      const response = await fetch(`http://192.168.1.185:5000/api/evenement/site/${id}`);
+      const response = await fetch(
+        `http://192.168.1.185:5000/api/evenement/site/${id}`
+      );
 
       const responseData = await response.json();
       if (!response.ok) {
@@ -36,11 +39,13 @@ const Evenement = (props) => {
   const [list, setList] = useState([]);
 
   const id = props.navigation.getParam("id");
-  console.log(id)
+  console.log(id);
 
   useEffect(() => {
     const sendRequest = async () => {
-      const response = await fetch(`http://192.168.1.185:5000/api/evenement/site/${id}`);
+      const response = await fetch(
+        `http://192.168.1.185:5000/api/evenement/site/${id}`
+      );
 
       const responseData = await response.json();
       if (!response.ok) {
@@ -51,7 +56,7 @@ const Evenement = (props) => {
     };
     sendRequest();
   }, []);
-  console.log(list)
+  console.log(list);
   return (
     <ScrollView
       refreshControl={
@@ -60,30 +65,33 @@ const Evenement = (props) => {
     >
       {list &&
         list.map((row) => (
-          <View style={styles.mealItem}>
-            <TouchableOpacity
-              
-            >
-              <View>
-                <View style={{ ...styles.MealRow, ...styles.mealHeader }}>
-                  <ImageBackground
-                    source={{ uri: `http://192.168.1.185:5000/${row.photo}` }}
-                    style={styles.bgImage}
-                  >
-                    <Text style={styles.title}>{props.titre}</Text>
-                  </ImageBackground>
-                </View>
-                <View style={{ ...styles.MealRow, ...styles.mealDetail }}>
-                  <Text>{row.Ddebut}</Text>
-                  <Text>{row.Dfin}</Text>
-                  <Text>{row.type}</Text>
-                </View>
-                <Text>{row.description}</Text>
-              </View>
-            </TouchableOpacity>
+          <View>
+            <Image
+              source={{ uri: `http://192.168.1.185:5000/${row.photo}` }}
+              style={styles.image}
+            />
+            <View style={styles.details}>
+              <Text>{row.titre}</Text>
+              <Text>{row.Ddebut}</Text>
+              <Text>{row.Dfin}</Text>
+            </View>
+            <Card>
+              <CardItem header>
+                <Text>{row.type}</Text>
+              </CardItem>
+              <CardItem>
+                <Body>
+                  <Text>{row.description}</Text>
+                </Body>
+              </CardItem>
+              <CardItem footer>
+                <Button rounded >
+                  <Text>Envoyer une demande d'inscription</Text>
+                </Button>
+              </CardItem>
+            </Card>
           </View>
         ))}
-      
     </ScrollView>
   );
 };
@@ -95,37 +103,29 @@ Evenement.navigationOptions = (navData) => {
 };
 
 const styles = StyleSheet.create({
-  mealItem: {
+  image: {
+    width: "100%",
     height: 200,
-    width: "100%",
-    backgroundColor: "#f5f5f5",
-    borderRadius: 10,
-    overflow: "hidden",
   },
-  MealRow: {
+  details: {
     flexDirection: "row",
-  },
-  mealHeader: {
-    height: "85%",
-  },
-  mealDetail: {
-    paddingHorizontal: 10,
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: "15%",
-  },
-  bgImage: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "flex-end",
+    padding: 10,
+    justifyContent: "space-around",
   },
   title: {
-    fontSize: 20,
-    color: "white",
-    backgroundColor: "rgba(0,0,0,0.5)",
-    paddingVertical: 5,
-    paddingHorizontal: 12,
+    fontSize: 22,
     textAlign: "center",
+  },
+  listItem: {
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    padding: 10,
+  },
+  map: {
+    width: "100%",
+    height: 265,
   },
 });
 

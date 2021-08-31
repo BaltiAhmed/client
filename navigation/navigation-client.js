@@ -3,7 +3,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import IconAntDesign from "react-native-vector-icons/AntDesign";
-import IconFontAwesome from "react-native-vector-icons/FontAwesome";
+import Fontisto from "react-native-vector-icons/Fontisto";
 import Landing from "../screens/landing";
 import SiteTourestique from "../screens/site-tourestique";
 import Evenement from "../screens/evenement";
@@ -59,7 +59,7 @@ const AppNav = createMaterialBottomTabNavigator(
       screen: ProfileNav,
       navigationOptions: {
         tabBarIcon: (tabInfo) => {
-          return <IconAntDesign name="profile" size={25} color="#fafafa" />;
+          return <Fontisto name="person" size={25} color="#fafafa" />;
         },
         tabBarColor: "#673ab7",
       },

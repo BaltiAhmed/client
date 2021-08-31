@@ -8,7 +8,17 @@ import {
   RefreshControl,
   ScrollView,
 } from "react-native";
-
+import {
+  Container,
+  Header,
+  Content,
+  List,
+  ListItem,
+  Left,
+  Body,
+  Right,
+  Thumbnail,
+} from "native-base";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -21,7 +31,9 @@ const BonPlan = (props) => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
     const sendRequest = async () => {
-      const response = await fetch(`http://192.168.1.185:5000/api/bonplan/site/${id}`);
+      const response = await fetch(
+        `http://192.168.1.185:5000/api/bonplan/site/${id}`
+      );
 
       const responseData = await response.json();
       if (!response.ok) {
@@ -36,11 +48,13 @@ const BonPlan = (props) => {
   const [list, setList] = useState([]);
 
   const id = props.navigation.getParam("id");
-  console.log(id)
+  console.log(id);
 
   useEffect(() => {
     const sendRequest = async () => {
-      const response = await fetch(`http://192.168.1.185:5000/api/bonplan/site/${id}`);
+      const response = await fetch(
+        `http://192.168.1.185:5000/api/bonplan/site/${id}`
+      );
 
       const responseData = await response.json();
       if (!response.ok) {
@@ -51,7 +65,7 @@ const BonPlan = (props) => {
     };
     sendRequest();
   }, []);
-  console.log(list)
+  console.log(list);
   return (
     <ScrollView
       refreshControl={
@@ -60,30 +74,18 @@ const BonPlan = (props) => {
     >
       {list &&
         list.map((row) => (
-          <View style={styles.mealItem}>
-            <TouchableOpacity
-              
-            >
-              <View>
-                <View style={{ ...styles.MealRow, ...styles.mealHeader }}>
-                  <ImageBackground
-                    source={{ uri: `http://192.168.1.185:5000/${row.photo}` }}
-                    style={styles.bgImage}
-                  >
-                    <Text style={styles.title}>{props.titre}</Text>
-                  </ImageBackground>
-                </View>
-                <View style={{ ...styles.MealRow, ...styles.mealDetail }}>
-                  <Text>{row.Ddebut}</Text>
-                  <Text>{row.Dfin}</Text>
-                  <Text>{row.type}</Text>
-                </View>
-                <Text>{row.description}</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          <ListItem avatar>
+            <Body>
+              <Text>{row.titre}</Text>
+              <Text>{row.type}</Text>
+              <Text note>{row.description}</Text>
+            </Body>
+            <Right>
+              <Text note>{row.Ddebut}</Text>
+              <Text note>{row.Dfin}</Text>
+            </Right>
+          </ListItem>
         ))}
-      
     </ScrollView>
   );
 };
