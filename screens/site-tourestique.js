@@ -94,7 +94,7 @@ const SiteTourestique = (props) => {
                         routeName: "Evenement",
                         params: {
                           id: list._id,
-                        }
+                        },
                       });
                     }}
                   />
@@ -108,7 +108,22 @@ const SiteTourestique = (props) => {
                         routeName: "BonPlan",
                         params: {
                           id: list._id,
-                        }
+                        },
+                      });
+                    }}
+                  />
+
+                  <Fontisto
+                    name="bus"
+                    size={50}
+                    color="#1976d2"
+                    style={{ marginLeft: 100 }}
+                    onPress={() => {
+                      props.navigation.navigate({
+                        routeName: "Transports",
+                        params: {
+                          id: list._id,
+                        },
                       });
                     }}
                   />
@@ -149,7 +164,7 @@ const styles = StyleSheet.create({
   },
   details: {
     flexDirection: "row",
-    padding: 10,
+    padding: 5,
     justifyContent: "space-around",
   },
   title: {
