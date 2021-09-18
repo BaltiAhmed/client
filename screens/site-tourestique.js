@@ -12,6 +12,7 @@ import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Fontisto from "react-native-vector-icons/Fontisto";
+import StarRating from "../components/starRating";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -66,6 +67,9 @@ const SiteTourestique = (props) => {
               source={{ uri: `http://192.168.1.185:5000/${list.photo}` }}
               style={styles.image}
             />
+            <View>
+              <StarRating score={list.scoreT} id={list._id}/>
+            </View>
             <View style={styles.details}>
               <Text>{list.nom}</Text>
               <Text>{list.gouvernorat}</Text>
