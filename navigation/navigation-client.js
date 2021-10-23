@@ -10,6 +10,7 @@ import Evenement from "../screens/evenement";
 import BonPlan from "../screens/bonPlan";
 import Profile from "../screens/profile";
 import Transports from "../screens/transports";
+import Meteo from "../screens/meteo";
 
 
 
@@ -19,7 +20,8 @@ const LandingNav = createStackNavigator(
     SiteTourestique:SiteTourestique,
     Evenement:Evenement,
     BonPlan:BonPlan,
-    Transports:Transports
+    Transports:Transports,
+    Meteo:Meteo
   },
   {
     defaultNavigationOptions: {

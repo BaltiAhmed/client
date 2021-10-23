@@ -13,6 +13,7 @@ import { Marker } from "react-native-maps";
 import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import StarRating from "../components/starRating";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -68,7 +69,7 @@ const SiteTourestique = (props) => {
               style={styles.image}
             />
             <View>
-              <StarRating score={list.scoreT} id={list._id}/>
+              <StarRating score={list.scoreT} id={list._id} />
             </View>
             <View style={styles.details}>
               <Text>{list.nom}</Text>
@@ -125,6 +126,21 @@ const SiteTourestique = (props) => {
                     onPress={() => {
                       props.navigation.navigate({
                         routeName: "Transports",
+                        params: {
+                          id: list._id,
+                        },
+                      });
+                    }}
+                  />
+
+                  <MaterialCommunityIcons
+                    name="weather-cloudy-alert"
+                    size={50}
+                    color="#1976d2"
+                    style={{ marginLeft: 100 }}
+                    onPress={() => {
+                      props.navigation.navigate({
+                        routeName: "Meteo",
                         params: {
                           id: list._id,
                         },

@@ -5,7 +5,7 @@ import { AirbnbRating } from "react-native-ratings";
 const StarRating = (props) => {
   const [rating, setRating] = useState(props.score);
   const submit = async (e) => {
-    let response = await fetch(`http://192.168.1.185:5000/api/site/rating/${props.id}`, {
+    let response = await fetch(`http://192.168.1.6:5000/api/site/rating/${props.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
