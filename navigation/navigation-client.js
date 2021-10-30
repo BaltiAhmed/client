@@ -4,6 +4,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import IconAntDesign from "react-native-vector-icons/AntDesign";
 import Fontisto from "react-native-vector-icons/Fontisto";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import Landing from "../screens/landing";
 import SiteTourestique from "../screens/site-tourestique";
 import Evenement from "../screens/evenement";
@@ -11,6 +12,9 @@ import BonPlan from "../screens/bonPlan";
 import Profile from "../screens/profile";
 import Transports from "../screens/transports";
 import Meteo from "../screens/meteo";
+import Notification from "../screens/notification";
+import DetailsEvenement from "../screens/detailsEvenement";
+import DetailsBonPlan from "../screens/detailsBonPlan";
 
 
 
@@ -48,6 +52,23 @@ const ProfileNav = createStackNavigator(
   }
 );
 
+const NotificationNav = createStackNavigator(
+  {
+    Notification: Notification,
+    DetailsEvenement: DetailsEvenement,
+    DetailsBonPan : DetailsBonPlan
+    
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#673ab7",
+      },
+      headerTintColor: "white",
+    },
+  }
+);
+
 const AppNav = createMaterialBottomTabNavigator(
   {
     Home: {
@@ -59,6 +80,15 @@ const AppNav = createMaterialBottomTabNavigator(
         tabBarColor: "#0086c3",
       },
     },
+    Notifications: {
+      screen: NotificationNav,
+      navigationOptions: {
+        tabBarIcon: (tabInfo) => {
+          return <Ionicons name="notifications" size={25} color="#fafafa" />;
+        },
+        tabBarColor: "#673ab7",
+      },
+    },
     Profile: {
       screen: ProfileNav,
       navigationOptions: {
@@ -68,6 +98,7 @@ const AppNav = createMaterialBottomTabNavigator(
         tabBarColor: "#673ab7",
       },
     },
+    
   },
   {
     activeColor: "white",
