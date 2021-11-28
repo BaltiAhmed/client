@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -28,7 +28,7 @@ const Profile = (props) => {
 
   const submit = async () => {
     setLoading(true);
-    let response = await fetch(`http://192.168.1.185:5000/api/user/${auth.userId}`, {
+    let response = await fetch(`http://192.168.1.46:5000/api/user/${auth.userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -52,6 +52,29 @@ const Profile = (props) => {
     setLoading(false);
     Alert.alert("Message", "Votre compte est crée", [{ text: "fermer" }]);
   };
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    const sendRequest = async () => {
+      const response = await fetch(
+        `http://192.168.1.46:5000/api/user/${auth.userId}`
+      );
+
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+
+      setList(responseData);
+      setNom(responseData.existingUser.nom)
+      setPrenom(responseData.existingUser.prenom)
+      setEmail(responseData.existingUser.email)
+      setTel(responseData.existingUser.tel)
+      setAdresse(responseData.existingUser.adresse)
+      setGouvernorat(responseData.existingUser.gouvernorat)
+    };
+    sendRequest();
+  }, []);
 
   return (
     <Card style={styles.authContainer}>

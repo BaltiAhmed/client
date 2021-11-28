@@ -23,7 +23,7 @@ const DetailsBonPlan = (props) => {
     wait(2000).then(() => setRefreshing(false));
     const sendRequest = async () => {
       const response = await fetch(
-        `http://192.168.1.185:5000/api/bonplan/${id}`
+        `http://192.168.1.46:5000/api/bonplan/${id}`
       );
 
       const responseData = await response.json();
@@ -44,7 +44,7 @@ const DetailsBonPlan = (props) => {
   useEffect(() => {
     const sendRequest = async () => {
       const response = await fetch(
-        `http://192.168.1.185:5000/api/bonplan/${id}`
+        `http://192.168.1.46:5000/api/bonplan/${id}`
       );
 
       const responseData = await response.json();

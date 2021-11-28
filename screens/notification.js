@@ -7,6 +7,7 @@ import {
   ImageBackground,
   RefreshControl,
   ScrollView,
+  Alert,
 } from "react-native";
 import {
   Container,
@@ -19,6 +20,7 @@ import {
   Right,
   Thumbnail,
 } from "native-base";
+import IconAntDesign from "react-native-vector-icons/AntDesign";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -31,9 +33,7 @@ const Notification = (props) => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
     const sendRequest = async () => {
-      const response = await fetch(
-        `http://192.168.1.185:5000/api/notification`
-      );
+      const response = await fetch(`http://192.168.1.46:5000/api/notification`);
 
       const responseData = await response.json();
       if (!response.ok) {
@@ -52,9 +52,7 @@ const Notification = (props) => {
 
   useEffect(() => {
     const sendRequest = async () => {
-      const response = await fetch(
-        `http://192.168.1.185:5000/api/notification`
-      );
+      const response = await fetch(`http://192.168.1.46:5000/api/notification`);
 
       const responseData = await response.json();
       if (!response.ok) {
@@ -115,13 +113,38 @@ const Notification = (props) => {
             >
               <Left>
                 <Thumbnail
-                  source={{ uri: `http://192.168.1.185:5000/${row.image}` }}
+                  source={{ uri: `http://192.168.1.46:5000/${row.image}` }}
                 />
               </Left>
               <Body>
                 <Text>{row.message}</Text>
               </Body>
-              <Right></Right>
+              <Right>
+                <IconAntDesign
+                  name="delete"
+                  size={25}
+                  color="red"
+                  onPress={async (event) => {
+                    let response = await fetch(
+                      `http://192.168.1.46:5000/api/notification/${row._id}`,
+                      {
+                        method: "DELETE",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    );
+                    let responsedata = await response.json();
+                    if (!response.ok) {
+                      throw new Error(responsedata.message);
+                    }
+                    setList(list.filter((el) => el._id !== row._id));
+                    Alert.alert("Message", "Notification bien suprimer", [
+                      { text: "fermer" },
+                    ]);
+                  }}
+                />
+              </Right>
             </ListItem>
           </TouchableOpacity>
         ))}

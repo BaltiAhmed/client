@@ -28,7 +28,7 @@ const SiteTourestique = (props) => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
     const sendRequest = async () => {
-      const response = await fetch(`http://192.168.1.185:5000/api/site/${id}`);
+      const response = await fetch(`http://192.168.1.46:5000/api/site/${id}`);
 
       const responseData = await response.json();
       if (!response.ok) {
@@ -44,7 +44,7 @@ const SiteTourestique = (props) => {
 
   useEffect(() => {
     const sendRequest = async () => {
-      const response = await fetch(`http://192.168.1.185:5000/api/site/${id}`);
+      const response = await fetch(`http://192.168.1.46:5000/api/site/${id}`);
 
       const responseData = await response.json();
       if (!response.ok) {
@@ -65,7 +65,7 @@ const SiteTourestique = (props) => {
         {list && (
           <View>
             <Image
-              source={{ uri: `http://192.168.1.185:5000/${list.photo}` }}
+              source={{ uri: `http://192.168.1.46:5000/${list.photo}` }}
               style={styles.image}
             />
             <View>

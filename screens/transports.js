@@ -32,7 +32,7 @@ const Transports = (props) => {
     wait(2000).then(() => setRefreshing(false));
     const sendRequest = async () => {
       const response = await fetch(
-        `http://192.168.1.185:5000/api/transport/site/${id}`
+        `http://192.168.1.46:5000/api/transport/site/${id}`
       );
 
       const responseData = await response.json();
@@ -53,7 +53,7 @@ const Transports = (props) => {
   useEffect(() => {
     const sendRequest = async () => {
       const response = await fetch(
-        `http://192.168.1.185:5000/api/transport/site/${id}`
+        `http://192.168.1.46:5000/api/transport/site/${id}`
       );
 
       const responseData = await response.json();

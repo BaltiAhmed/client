@@ -23,7 +23,7 @@ const Evenement = (props) => {
     wait(2000).then(() => setRefreshing(false));
     const sendRequest = async () => {
       const response = await fetch(
-        `http://192.168.1.185:5000/api/evenement/site/${id}`
+        `http://192.168.1.46:5000/api/evenement/site/${id}`
       );
 
       const responseData = await response.json();
@@ -44,7 +44,7 @@ const Evenement = (props) => {
   useEffect(() => {
     const sendRequest = async () => {
       const response = await fetch(
-        `http://192.168.1.185:5000/api/evenement/site/${id}`
+        `http://192.168.1.46:5000/api/evenement/site/${id}`
       );
 
       const responseData = await response.json();
@@ -67,7 +67,7 @@ const Evenement = (props) => {
         list.map((row) => (
           <View>
             <Image
-              source={{ uri: `http://192.168.1.185:5000/${row.photo}` }}
+              source={{ uri: `http://192.168.1.46:5000/${row.photo}` }}
               style={styles.image}
             />
             <View style={styles.details}>
